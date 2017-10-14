@@ -1,0 +1,27 @@
+function str(Input) {
+  return JSON.stringify(Input)
+};
+
+function prs(Input) {
+  return JSON.parse(Input)
+};
+
+function arrManager() {
+    this.addTo = function(array, item) {
+        array.push(item);
+        return array;
+    };
+
+    this.removeFrom = function(array, item) {
+        var trashIndex;
+        for(i = 0; i < array.length; i++) {
+            if(array[i] == item) {
+                trashIndex = i;
+            }
+        }
+        if(trashIndex != null) {
+            array.splice(trashIndex, 1);
+            return array;
+        }
+    };
+}
