@@ -22,7 +22,8 @@ function storystart() {
 				Rewinds: 0,
 				SetChoice: 0
 			};
-			storytime[RawUserID] = str(obj);			msg = "You have been added to the list, " + Username + ".  There are a total of " + storytime["TotalPlayers"] + " signed up!";
+			storytime[RawUserID] = str(obj);			
+			msg = "You have been added to the list, " + Username + ".  There are a total of " + storytime["TotalPlayers"] + " signed up!";
 			};
 		};
 	} else {
