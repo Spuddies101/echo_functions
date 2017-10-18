@@ -1,0 +1,85 @@
+function storystart() {
+	var players = storytime["PlayerNames"];
+	var listplayers = storytime["PlayerIDs"];
+	if(players) {
+		if(storytime["TotalPlayers"] == 5) {
+			var players = prs(storytime["PlayerNames"]);
+			for(i = 0; i < players.length; i++) {
+			names += players[i] + ","
+			}
+			msg = "Sorry but the group is full.  Players are: " + names;
+		} else {
+			if(storytime["PlayerIDs"].indexOf(RawUserID) > -1) {
+				msg = "You've already registered to the system.";
+			} else {
+			storytime["TotalPlayers"]++;
+			storytime["PlayerIDs"] = storytime["PlayerIDs"].slice(0, -1) + ', "' + UserID + '"]';
+			storytime["PlayerNames"] = storytime["PlayerNames"].slice(0, -1) + ', "' + Username + '"]';
+			var obj = {
+				Choices: 0,
+				Deaths: 0,
+				Registered: true,
+				Rewinds: 0,
+				SetChoice: 0
+			};
+			storytime[RawUserID] = str(obj);			msg = "You have been added to the list, " + Username + ".  There are a total of " + storytime["TotalPlayers"] + " signed up!";
+			};
+		};
+	} else {
+	storytime["ChoiceSet"] = 1;
+	storytime["TotalPlayers"] = 1;
+	storytime["PlayerIDs"] = '["' + UserID + '"]';
+	storytime["PlayerNames"] = '["' + Username + '"]';
+	msg = "You have begun the list, " + Username + " now get your friends to join!";
+	var obj = {
+				Choices: 0,
+				Deaths: 0,
+				Registered: true,
+				Rewinds: 0,
+				SetChoice: 0
+			};
+	storytime[RawUserID] = str(obj);
+	};
+	return msg;
+};
+
+
+function stchoice() {
+if (storytime.hasOwnProperty(RawUserID) === false) {
+	msg = "Sorry, but you aren't registered for the game.  Try back later once the current story has finished.";
+	} else {
+		var choice = Params.toLowerCase();
+		var Robj = prs(storytime[RawUserID]);
+		var msg = "";
+			if(choice == "a" || choice == "b") {
+			Robj["Choices"]++
+			Robj["SetChoice"]++;
+			
+			msg = "You have made your choice.  The story will develop shortly.";
+			} else {
+					msg = "That is not a valid choice.  Please refer to your DM and submit again.";
+					}
+			storytime[RawUserID] = str(Robj);
+		};
+		return msg;
+};
+
+
+function stcontinue() {
+var TP = Math.floor(parseInt(storytime["TotalPlayers"]) * parseInt(storytime["ChoiceSet"]));
+var pid = prs(storytime["PlayerIDs"]);
+var p = 0;
+var msg = "";
+for(i = 0; i < pid.length; i++) {
+    var user = prs(storytime[pid[i]]);
+    var iOa = parseInt(user.SetChoice);
+    p += iOa;
+};
+if(p < TP) {
+msg = "Not all players have made a decision yet.  We are unable to continue.";
+} else {
+storytime["ChoiceSet"]++;
+msg = "All players have made a decision. Let us continue.";
+};
+return msg;
+};
