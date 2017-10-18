@@ -93,7 +93,7 @@ var msg = "";
 var pid = prs(storytime["PlayerIDs"]);
 for (i = 0; i < pid.length; i++) {
 	var user = prs(storytime[pid[i]]);
-	user["SetChoices"]--;
+	user["SetChoice"]--;
 	user["Choices"]--;
 	msg = "Complete?";
 	};
