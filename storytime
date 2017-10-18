@@ -91,8 +91,8 @@ return msg;
 function tst() {
 var msg = "";
 var pid = prs(storytime["PlayerIDs"]);
-var user0 = prs(storytime[pid][0]);
-var user1 = prs(storytime[pid][1]);
+var user0 = prs(storytime[pid[0]]);
+var user1 = prs(storytime[pid[1]]);
 user0.Choices--;
 user0.SetChoice--;
 user1.Choices--;
