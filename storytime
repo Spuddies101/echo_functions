@@ -24,8 +24,7 @@ function storystart() {
 			};
 			storytime[RawUserID] = str(obj);			
 			msg = "You have been added to the list, " + Username + ".  There are a total of " + storytime["TotalPlayers"] + " signed up!";
-			};
-		};
+			};		};
 	} else {
 	storytime["ChoiceSet"] = 1;
 	storytime["TotalPlayers"] = 1;
@@ -35,15 +34,13 @@ function storystart() {
 	var obj = {
 				Choices: 0,
 				Deaths: 0,
-				Registered: true,
-				Rewinds: 0,
+				Registered: true,				Rewinds: 0,
 				SetChoice: 0
 			};
 	storytime[RawUserID] = str(obj);
 	};
 	return msg;
 };
-
 
 
 
@@ -91,12 +88,11 @@ return msg;
 function tst() {
 var msg = "";
 var pid = prs(storytime["PlayerIDs"]);
-var user0 = prs(storytime[pid[0]]);
-var user1 = prs(storytime[pid[1]]);
-user0.Choices--;
-user0.SetChoice--;
-user1.Choices--;
-user1.SetChoice--;
-msg = "Complete?"
+for(i = 0; i < pid.length; i++0 {
+var user = prs(storytime[pid[i]]);
+user.Choices--;
+user.SetChoice--; 
+msg = "Complete?";
+};
 return msg;
 };
