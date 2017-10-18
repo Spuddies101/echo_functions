@@ -93,10 +93,8 @@ var msg = "";
 var pid = prs(storytime["PlayerIDs"]);
 for (i = 0; i < pid.length; i++) {
 	var user = prs(storytime[pid[i]]);
-	var iOa = parseInt(user.SetChoice);
-	var iOb = parseInt(user.Choices);
-	user.SetChoice -= 1;
-	user.Choices -= 1;
+	user["SetChoices"]--;
+	user["Choices"]--;
 	msg = "Complete?";
 	};
 return msg;
