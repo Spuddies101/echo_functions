@@ -91,11 +91,10 @@ return msg;
 function tst() {
 var msg = "";
 var pid = prs(storytime["PlayerIDs"]);
-for (i = 0; i < pid.length; i++) {
-	var user = prs(storytime[pid[i]]);
-	user["SetChoice"]--;
-	user["Choices"]--;
-	msg = "Complete?";
-	};
+pid[0]["Choices"]--;
+pid[0]["SetChoice"]--;
+pid[1]["Choices"]--;
+pid[1]["SetChoice"]--;
+msg = "Complete?"
 return msg;
 };
