@@ -89,7 +89,7 @@ return msg;
 
 function tst() {
 var msg = "";
-var pid = prs(storytime["PlayerIDs"];
+var pid = prs(storytime["PlayerIDs"]);
 for (i = 0; i < pid.length; i++) {
 	var user = prs(storytime[pid[i]]);
 	var obj = {
