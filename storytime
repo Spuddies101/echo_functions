@@ -47,8 +47,7 @@ function storystart() {
 function stchoice() {
 if (storytime.hasOwnProperty(RawUserID) === false) {
 	msg = "Sorry, but you aren't registered for the game.  Try back later once the current story has finished.";
-	} else {
-		var choice = Params.toLowerCase();
+	} else {		var choice = Params.toLowerCase();
 		var Robj = prs(storytime[RawUserID]);
 		var msg = "";
 			if(choice == "a" || choice == "b") {
@@ -90,8 +89,8 @@ var msg = "";
 var pid = prs(storytime["PlayerIDs"]);
 for(i = 0; i < pid.length; i++) {
 var user = prs(storytime[pid[i]]);
-user.Choices--;
-user.SetChoice--; 
+user.Choices - 1;
+user.SetChoice - 1; 
 msg = "Complete?";
 };
 return msg;
