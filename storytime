@@ -22,7 +22,7 @@ if(Params === null) {
 				Registered: true,
 				Rewinds: 0,
 				SetChoice: 0,
-				GameType: Group
+				GameType: "Group"
 			};
 			storytime[RawUserID] = str(obj);			
 			msg = "You have been added to the list, " + Username + ".  There are a total of " + storytime["TotalPlayers"] + " signed up!";
@@ -39,7 +39,7 @@ if(Params === null) {
 				Registered: true,				
 				Rewinds: 0,
 				SetChoice: 0,
-				GameType: Group
+				GameType: "Group"
 			};
 	storytime[RawUserID] = str(obj);
 	};
@@ -50,7 +50,7 @@ if(Params === null) {
 				Registered: true,
 				Rewinds: 0,
 				SetChoice: 0,
-				GameType: Solo
+				GameType: "Solo"
 			};
 			storytime[RawUserID] = str(obj);
 			msg ="You have begun your solo adventure.  Next up is your genre selection.  Use, `st?genre` to see a list of the available genre's.";
