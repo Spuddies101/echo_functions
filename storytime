@@ -122,7 +122,7 @@ function strewind () {
 	if (storytime.hasOwnProperty(RawUserID) === false) {
 		msg = "Sorry, but you aren't registered for the game.  Try back later once the current story has finished.";
 	} else {
-		if(storytime[RawUserID]["GameType"] === Solo) {
+		if(storytime[RawUserID]["GameType"] === "Solo") {
 			msg = "";
 			var Robj = prs(storytime[RawUserID]);
 				if (Robj.Rewinds <= 0) {
