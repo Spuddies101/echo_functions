@@ -1,7 +1,7 @@
 function storystart() {
 	var players = storytime["PlayerNames"];
 	var listplayers = storytime["PlayerIDs"];
-if(Params == null) {
+if(Params = null) {
 	if(players) {
 		if(storytime["TotalPlayers"] == 5) {
 			var players = prs(storytime["PlayerNames"]);
