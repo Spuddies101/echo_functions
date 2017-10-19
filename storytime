@@ -1,6 +1,7 @@
 function storystart() {
 	var players = storytime["PlayerNames"];
 	var listplayers = storytime["PlayerIDs"];
+if(Params === null) {
 	if(players) {
 		if(storytime["TotalPlayers"] == 5) {
 			var players = prs(storytime["PlayerNames"]);
@@ -20,7 +21,8 @@ function storystart() {
 				Deaths: 0,
 				Registered: true,
 				Rewinds: 0,
-				SetChoice: 0
+				SetChoice: 0,
+				GameType: Group
 			};
 			storytime[RawUserID] = str(obj);			
 			msg = "You have been added to the list, " + Username + ".  There are a total of " + storytime["TotalPlayers"] + " signed up!";
@@ -34,14 +36,27 @@ function storystart() {
 	var obj = {
 				Choices: 0,
 				Deaths: 0,
-				Registered: true,				Rewinds: 0,
-				SetChoice: 0
+				Registered: true,				
+				Rewinds: 0,
+				SetChoice: 0,
+				GameType: Group
 			};
 	storytime[RawUserID] = str(obj);
 	};
-	return msg;
+	} else {
+		var obj = {
+				Choices: 0,
+				Deaths: 0,
+				Registered: true,
+				Rewinds: 0,
+				SetChoice: 0,
+				GameType: Solo
+			};
+			storytime[RawUserID] = str(obj);
+			msg ="You have begun your solo adventure.  Next up is your genre selection.  Use, `st?genre` to see a list of the available genre's.";
+			};
+			return msg;
 };
-
 
 
 
