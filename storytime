@@ -9,7 +9,7 @@ function storystart() {
 				Registered: true,
 				Rewinds: 0,
 				SetChoice: 0,
-				GameType: "Solo"
+				GameType: "Single"
 			};
 		storytime[RawUserID] = str(obj);
 		msg ="You have begun your solo adventure.  Next up is your genre selection.  Use, `st?genre` to see a list of the available genre's.";
@@ -41,6 +41,18 @@ function storystart() {
 			};
 			};
 		} else {
+			if(Params != null) {
+			var obj = {
+				Choices: 0,
+				Deaths: 0,
+				Registered: true,
+				Rewinds: 0,
+				SetChoice: 0,
+				GameType: "Single"
+			};
+			storytime[RawUserID] = str(obj);
+			msg ="You have begun your solo adventure.  Next up is your genre selection.  Use, `st?genre` to see a list of the available genre's.";
+			} else {
 			storytime["ChoiceSet"] = 1;
 			storytime["TotalPlayers"] = 1;
 			storytime["PlayerIDs"] = '["' + UserID + '"]';
@@ -55,6 +67,7 @@ function storystart() {
 					GameType: "Group"
 				};
 			storytime[RawUserID] = str(obj);
+			};
 			};
 	return msg;
 };
