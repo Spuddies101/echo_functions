@@ -56,11 +56,8 @@ function storystart() {
 				};
 			storytime[RawUserID] = str(obj);
 			};
-	};
-			
 	return msg;
 };
-
 
 
 function stchoice() {
