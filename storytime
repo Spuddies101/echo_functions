@@ -1,88 +1,50 @@
 function storystart() {
 	var players = storytime["PlayerNames"];
 	var listplayers = storytime["PlayerIDs"];
-	if(players) {
-		if(Params != null) {
-			if(storytime["PlayerIDs"].indexOf(RawUserID) > -1 || storytime.indexOf(RawUserID) > -1) {	
-				msg = "You are already on an adventure.  Please finish your story before beginning a new one.";
-			} else {
-			var obj = {
-				Choices: 0,
-				Deaths: 0,
-				Registered: true,
-				Rewinds: 0,
-				SetChoice: 0,
-				GameType: "Single"
-			};
-		storytime[RawUserID] = str(obj);
-		msg ="You have begun your solo adventure.  Next up is your genre selection.  Use, `st?genre` to see a list of the available genre's.";
-		};
-			} else {
-			if(storytime["TotalPlayers"] == 5) {
-				var players = prs(storytime["PlayerNames"]);
+	var msg = "";
+	if (players) {
+		if(storytime["TotalPlayers"] == 5) {
+			var names = "";
+			var players = JSON.parse(storytime["PlayerNames"]);
 				for(i = 0; i < players.length; i++) {
 				names += players[i] + ","
 				}
-				msg = "Sorry but the group is full.  Players are: " + names;
+			msg = "The group is full, sorry.  Players are " + names;
+		} else {
+			if(storytime["PlayerIDs"].indexOf(RawUserID) > -1) {
+				msg = "You've already joined the game.
 			} else {
-				if(storytime["PlayerIDs"].indexOf(RawUserID) > -1) {
-					msg = "You've already registered to the system.";
-				} else {
 				storytime["TotalPlayers"]++;
 				storytime["PlayerIDs"] = storytime["PlayerIDs"].slice(0, -1) + ', "' + UserID + '"]';
-				storytime["PlayerNames"] = storytime["PlayerNames"].slice(0, -1) + ', "' + Username + '"]';
-				var obj = {
-					Choices: 0,
-					Deaths: 0,
-					Registered: true,
-					Rewinds: 0,
-					SetChoice: 0,
-					GameType: "Group"
-				};
-				storytime[RawUserID] = str(obj);			
+				["PlayerNames"] = storytime["PlayerNames"].slice(0, -1) + ', "' + Username + '"]';
 				msg = "You have been added to the list, " + Username + ".  There are a total of " + storytime["TotalPlayers"] + " signed up!";
-				};		
-			};
-			};
-		} else {
-			if(Params != null) {
-				if(storytime["PlayerIDs"].indexOf(RawUserID) > -1 || storytime.indexOf(RawUserID) > -1) {	
-				msg = "You are already on an adventure.  Please finish your story before beginning a new one.";
-				} else {
 					var obj = {
 						Choices: 0,
 						Deaths: 0,
 						Registered: true,
-						Rewinds: 0,
-						SetChoice: 0,
-						GameType: "Single"
-					};
-					storytime[RawUserID] = str(obj);
-					msg ="You have begun your solo adventure.  Next up is your genre selection.  Use, `st?genre` to see a list of the available genre's.";
-				};
-			} else {
-					if(storytime["PlayerIDs"].indexOf(RawUserID) > -1 || storytime.indexOf(RawUserID) > -1) {	
-						msg = "You are already on an adventure.  Please finish your story before beginning a new one.";				
-					} else {
-					storytime["ChoiceSet"] = 1;
-					storytime["TotalPlayers"] = 1;
-					storytime["PlayerIDs"] = '["' + UserID + '"]';
-					storytime["PlayerNames"] = '["' + Username + '"]';
-					msg = "You have begun the list, " + Username + " now get your friends to join!";
-						var obj = {
-							Choices: 0,
-							Deaths: 0,
-							Registered: true,				
-							Rewinds: 0,
-							SetChoice: 0,
-							GameType: "Group"
+						Rewinds: 0
 						};
 				storytime[RawUserID] = str(obj);
+				if(storytime["TotalPlayers"] == 5) {
+					msg += "The group is now full!";
 				};
 			};
-			};
-			};
-	return msg;
+		};
+	} else {
+		storytime["TotalPlayers"] = 1;
+		storytime["PlayerIDs"] = '["' + UserID + '"]';
+		storytime["PlayerNames"] = '["' + Username + '"]';
+		storytime["SetChoice"] = 0;
+		var obj = {
+			Choices: 0,
+			Deaths: 0,
+			Registered: true,
+			Rewinds: 0
+		};
+		storytime[RawUserID] = str(obj);
+		msg = "You have begun the list, " + Username + " now get your friends to join!";
+};
+return msg;
 };
 
 function stchoice() {
