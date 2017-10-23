@@ -12,7 +12,7 @@ function storystart() {
 			msg = "The group is full, sorry.  Players are " + names;
 		} else {
 			if(storytime["PlayerIDs"].indexOf(RawUserID) > -1) {
-				msg = "You've already joined the game.
+				msg = "You've already joined the game.";
 			} else {
 				storytime["TotalPlayers"]++;
 				storytime["PlayerIDs"] = storytime["PlayerIDs"].slice(0, -1) + ', "' + UserID + '"]';
