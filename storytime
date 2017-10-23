@@ -56,7 +56,6 @@ if (storytime.hasOwnProperty(RawUserID) === false) {
 		var msg = "";
 			if(choice == "a" || choice == "b") {
 				Robj["Choices"]++
-				Robj["SetChoice"]++;
 				msg = "You have made your choice.  The story will develop shortly.";
 			} else {
 				msg = "That is not a valid choice.  Please refer to your DM and submit again.";
