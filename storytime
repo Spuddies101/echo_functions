@@ -16,7 +16,7 @@ function storystart() {
 			} else {
 				storytime["TotalPlayers"]++;
 				storytime["PlayerIDs"] = storytime["PlayerIDs"].slice(0, -1) + ', "' + UserID + '"]';
-				["PlayerNames"] = storytime["PlayerNames"].slice(0, -1) + ', "' + Username + '"]';
+				storytime["PlayerNames"] = storytime["PlayerNames"].slice(0, -1) + ', "' + Username + '"]';
 				msg = "You have been added to the list, " + Username + ".  There are a total of " + storytime["TotalPlayers"] + " signed up!";
 					var obj = {
 						Choices: 0,
@@ -54,38 +54,26 @@ if (storytime.hasOwnProperty(RawUserID) === false) {
 		var choice = Params.toLowerCase();
 		var Robj = prs(storytime[RawUserID]);
 		var msg = "";
-			if(Robj["GameType"] == "Group") {
-				if(choice == "a" || choice == "b") {
-					Robj["Choices"]++
-					Robj["SetChoice"]++;
-				
-					msg = "You have made your choice.  The story will develop shortly.";
-				} else {
-						msg = "That is not a valid choice.  Please refer to your DM and submit again.";
-						}
-			storytime[RawUserID] = str(Robj);
+			if(choice == "a" || choice == "b") {
+				Robj["Choices"]++
+				Robj["SetChoice"]++;
+				msg = "You have made your choice.  The story will develop shortly.";
 			} else {
-				if(choice == "a" || choice == "b") {
-					Robj["Choices"]++;
-					msg = "You have made your choice.  Please use the `st?continue` command to further the story's progression.";
-				} else {
-					msg = "That is not a valid choice.  Please refer to your DM and submit again.";
-						};
-					};
-			};
-		return msg;
-};
-
-
+				msg = "That is not a valid choice.  Please refer to your DM and submit again.";
+			}
+			storytime[RawUserID] = str(Robj);
+		};
+	return msg;
+};		
+	
 function stcontinue() {
 if (storytime.hasOwnProperty(RawUserID) === false) {
     msg = "Sorry, but you aren't registered for the game.  Try back later once the current story has finished.";
         } else {
-			if(storytime["GameType"] == "Group") {
-				var TP = Math.floor(parseInt(storytime["TotalPlayers"]) * parseInt(storytime["ChoiceSet"]));
-				var pid = prs(storytime["PlayerIDs"]);
-				var p = 0;
-				var msg = "";
+			var TP = Math.floor(parseInt(storytime["TotalPlayers"]) * parseInt(storytime["ChoiceSet"]));
+			var pid = prs(storytime["PlayerIDs"]);
+			var p = 0;
+			var msg = "";
 				for(i = 0; i < pid.length; i++) {
 					var user = prs(storytime[pid[i]]);
 					var iOa = parseInt(user.SetChoice);
@@ -97,10 +85,7 @@ if (storytime.hasOwnProperty(RawUserID) === false) {
 					storytime["ChoiceSet"]++;
 					msg = "All players have made a decision. Let us continue.";
 						};
-			} else {
-			msg = "Let's move the story forward.";
-					};
-				};
+			};
 	return msg;
 };
 
@@ -108,31 +93,20 @@ function strewind () {
 	if (storytime.hasOwnProperty(RawUserID) === false) {
 		msg = "Sorry, but you aren't registered for the game.  Try back later once the current story has finished.";
 	} else {
-		if(storytime[RawUserID]["GameType"] === "Solo") {
-			msg = "";
-			var Robj = prs(storytime[RawUserID]);
-				if (Robj.Rewinds <= 0) {
-					msg = "You do not have any rewinds to use.  These will be given out in time....just don't make any shitty choices till then. :D ";
-					} else {
-					msg = "The story will rewind to your last decision path.  Choose wisely.";
-					Robj["Rewinds"]--;
-					};
-		} else { 
-			var TP = parseInt(storytime["TotalPlayers"]);
-			var pid = JSON.parse(storytime["PlayerIDs"]);
-			var p = 0;
-			var msg = "";
-			for(i = 0; i < pid.length; i++) {
-				var user = JSON.parse(storytime[pid[i]]);
-				var iOa = parseInt(user.Rewinds);
-				p += iOa;
-				}
-			if(p < TP) {
-				msg = "Sorry but the party does not have enough rewinds to use this yet.  Keep trying!";
-			} else {
-				msg = "The story shall take a step into the past, to your most recent past choice.  Good luck.";
-			};
+		var TP = parseInt(storytime["TotalPlayers"]);
+		var pid = JSON.parse(storytime["PlayerIDs"]);
+		var p = 0;
+		var msg = "";
+		for(i = 0; i < pid.length; i++) {
+			var user = JSON.parse(storytime[pid[i]]);
+			var iOa = parseInt(user.Rewinds);
+			p += iOa;
+			}
+		if(p < TP) {
+			msg = "Sorry but the party does not have enough rewinds to use this yet.  Keep trying!";
+		} else {
+			msg = "The story shall take a step into the past, to your most recent past choice.  Good luck.";
 		};
-	};
+		};
 	return msg;
 };
