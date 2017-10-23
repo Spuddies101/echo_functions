@@ -34,7 +34,7 @@ function storystart() {
 		storytime["TotalPlayers"] = 1;
 		storytime["PlayerIDs"] = '["' + UserID + '"]';
 		storytime["PlayerNames"] = '["' + Username + '"]';
-		storytime["SetChoice"] = 0;
+		storytime["ChoiceSet"] = 0;
 		var obj = {
 			Choices: 0,
 			Deaths: 0,
